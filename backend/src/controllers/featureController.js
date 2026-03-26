@@ -1,4 +1,4 @@
-const {readDB, writeDB} = require("../utils/readWriteDB")
+const { readDB, writeDB } = require("../utils/readWriteDB")
 
 exports.getFeatures = (req, res) => {
     const db = readDB();
@@ -7,14 +7,14 @@ exports.getFeatures = (req, res) => {
 }
 
 exports.updateFeature = (req, res) => {
-    const {id} = req.params;
+    const { id } = req.params;
     const userId = req.id;
 
     const db = readDB()
 
     const feature = db.features.find(f => f.id == id)
 
-    if(!feature){
+    if (!feature) {
         return res.status(404).json({
             message: "feature not found"
         })
@@ -24,7 +24,7 @@ exports.updateFeature = (req, res) => {
         v => v.userId === userId && v.featureId == id
     )
 
-    if(alreadyVoted){
+    if (alreadyVoted) {
         return res.status(400).json({
             message: "you already voted"
         })
@@ -32,7 +32,7 @@ exports.updateFeature = (req, res) => {
 
     feature.votes += 1
 
-    db.votes.push({userId, featureId: id})
+    db.votes.push({ userId, featureId: id })
 
     writeDB(db)
 
