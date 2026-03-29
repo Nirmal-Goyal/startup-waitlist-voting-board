@@ -1,40 +1,46 @@
-const {readDB, writeDB} = require("../utils/readWriteDB")
+const { readDB, writeDB } = require("../utils/readWriteDB");
 
-exports.getFeatures = (req, res) => {
+exports.getFeatures = (req, res, next) => {
+  try {
     const db = readDB();
-    const sorted = db.features.sort((a, b) => b.votes - a.votes)
-    res.json(sorted)
-}
 
-exports.updateFeature = (req, res) => {
-    const {id} = req.params;
-    const userId = req.id;
+    const sorted = db.features.sort((a, b) => b.votes - a.votes);
 
-    const db = readDB()
+    res.json(sorted);
+  } catch (err) {
+    next(err);
+  }
+};
 
-    const feature = db.features.find(f => f.id == id)
+exports.upvoteFeature = (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const userId = req.ip;
 
-    if(!feature){
-        return res.status(404).json({
-            message: "feature not found"
-        })
+    const db = readDB();
+
+    const feature = db.features.find(f => f.id == id);
+
+    if (!feature) {
+      return res.status(404).json({ message: "Feature not found" });
     }
 
     const alreadyVoted = db.votes.find(
-        v => v.userId === userId && v.featureId == id
-    )
+      v => v.userId === userId && v.featureId == id
+    );
 
-    if(alreadyVoted){
-        return res.status(400).json({
-            message: "you already voted"
-        })
+    if (alreadyVoted) {
+      return res.status(400).json({ message: "You already voted" });
     }
 
-    feature.votes += 1
+    feature.votes += 1;
 
-    db.votes.push({userId, featureId: id})
+    db.votes.push({ userId, featureId: id });
 
-    writeDB(db)
+    writeDB(db);
 
-    res.json(feature)
-}
+    res.json(feature);
+  } catch (err) {
+    next(err);
+  }
+};
