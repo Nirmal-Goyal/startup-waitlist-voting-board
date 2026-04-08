@@ -1,10 +1,60 @@
 {
-    "waitlist": [],
-    "features": [
-        {"id": 1, "name": "Dark Mode", "votes": 0},
-        {"id": 2, "name": "API Access", "votes": 0},
-        {"id": 3, "name": "Mobile App", "votes": 0},
-        {"id": 4, "name": "Analytics Dashboard", "votes": 0}
-    ],
-    "votes": []
+  "waitlist": [
+    {
+      "email": "ronak.jain.sot2428@pwioi.com"
+    },
+    {
+      "email": "ronak75756@gmail.com"
+    }
+  ],
+  "features": [
+    {
+      "id": 1,
+      "name": "Dark Mode Support",
+      "description": "A sleek dark theme to reduce eye strain during late-night coding sessions.",
+      "votes": 1
+    },
+    {
+      "id": 2,
+      "name": "GraphQL API Access",
+      "description": "Provide a full GraphQL endpoint for advanced integrations and data fetching.",
+      "votes": 0
+    },
+    {
+      "id": 3,
+      "name": "Webhooks Integration",
+      "description": "Trigger external services instantly when specific events occur in your workspace.",
+      "votes": 2
+    },
+    {
+      "id": 4,
+      "name": "Real-time Collaboration",
+      "description": "Allow multiple users to edit and comment on the same board simultaneously.",
+      "votes": 1
+    },
+    {
+      "id": 5,
+      "name": "SSO Authentication",
+      "description": "Enterprise-grade security allowing users to login via Okta, Google Workspace, or Azure AD.",
+      "votes": 0
+    }
+  ],
+  "votes": [
+    {
+      "userId": "ronak.jain.sot2428@pwioi.com",
+      "featureId": "1"
+    },
+    {
+      "userId": "ronak.jain.sot2428@pwioi.com",
+      "featureId": "3"
+    },
+    {
+      "userId": "ronak.jain.sot2428@pwioi.com",
+      "featureId": "4"
+    },
+    {
+      "userId": "ronak75756@gmail.com",
+      "featureId": "3"
+    }
+  ]
 }

@@ -15,7 +15,13 @@ exports.getFeatures = (req, res, next) => {
 exports.upvoteFeature = (req, res, next) => {
   try {
     const { id } = req.params;
-    const userId = req.ip;
+    const { email } = req.body;
+
+    if (!email) {
+      return res.status(400).json({ message: "Email required to vote" });
+    }
+
+    const userId = email;
 
     const db = readDB();
 

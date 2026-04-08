@@ -1,3 +1,7 @@
 @import "tailwindcss";
 
-
+@layer base {
+  body {
+    @apply antialiased min-h-screen flex flex-col bg-zinc-950 text-zinc-50 selection:bg-blue-500/30 selection:text-white;
+  }
+}
